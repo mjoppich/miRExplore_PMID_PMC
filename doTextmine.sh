@@ -14,14 +14,16 @@ if [ "$#" -gt 3 ]; then
 		exit -1
 fi
 
-if [ "$#" -eq 2 ]; then
-	SENTENCESPREFIX="$1"
-	BASEFOLDER=$2
-	SYNBASEFOLDER=$2
-else
-	SENTENCESPREFIX="$1"
-	BASEFOLDER=$2
+if [ "$#" -eq 3 ]; then
+	TMEXEC=$1
+	SENTENCESPREFIX="$2"
+	BASEFOLDER=$3
 	SYNBASEFOLDER=$3
+else
+	TMEXEC=$1
+	SENTENCESPREFIX="$2"
+	BASEFOLDER=$3
+	SYNBASEFOLDER=$4
 fi
 
 SCRIPTPATH=$(dirname "$0")
@@ -55,7 +57,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNMODELANATOMY" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/model_anatomy.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/model_anatomy.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/ncit
@@ -63,7 +65,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNNCIT" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/ncit.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/ncit.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/mirna
@@ -71,7 +73,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNMIRNA" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/mirbase.hsa_mmu.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/mirbase.hsa_mmu.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/hgnc
@@ -79,7 +81,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNHGNC" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/hgnc.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/hgnc.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/mgi
@@ -87,7 +89,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNMGI" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/mgi.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/mgi.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/disease
@@ -95,7 +97,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNDISEASE" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/disease.syn ""|| exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/disease.syn ""|| exit -1
 fi
 
 FOLDER=$BASEFOLDER/cellline
@@ -103,7 +105,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNCELLLINES" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/cell_ontology.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/cell_ontology.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/go
@@ -111,7 +113,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNGO" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/go.*.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "" $SYNBASEFOLDER/synonyms/go.*.syn || exit -1
 fi
 
 FOLDER=$BASEFOLDER/relations
@@ -119,7 +121,7 @@ ALLFOLDERS+=("$FOLDER")
 if [ "$RUNRELATIONS" = "TRUE" ]; then
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/allrels.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/allrels.syn || exit -1
 fi
 
 if [ "$RUNORG" = "TRUE" ]; then
@@ -127,5 +129,5 @@ if [ "$RUNORG" = "TRUE" ]; then
 	ALLFOLDERS+=("$FOLDER")
 	rm -rf $FOLDER
 	mkdir -p $FOLDER
-	$SCRIPTPATH/runSyngrep.sh $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/organism.syn || exit -1
+	$SCRIPTPATH/runSyngrep.sh $TMEXEC $FOLDER $SENTENCESPREFIX "TRUE" $SYNBASEFOLDER/synonyms/organism.syn || exit -1
 fi

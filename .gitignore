@@ -1,0 +1,10 @@
+results.pmc.raw/*
+results.pubmed.raw/*
+
+*.index
+
+aggregated_pmid
+aggregated_pmc
+
+obodir/
+synonyms/

@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 
-#bash doTextmine.sh "./pmid/pubmed20n" "./results.pmid.raw/" "./"
+MIREXPLORE_PATH=/mnt/f/dev/git/miRExplore/python/
+bash doTextmine.sh "/usr/bin/python3 $MIREXPLORE_PATH/textmining/textmineDocument.py" "./pmc/" "./results.pmc.raw/" "./"
 
-bash doTextmine.sh "./pmc/" "./results.pmc.raw/" "./"
+#bash doTextmine.sh "./pmid/pubmed20n" "./results.pmid.raw/" "./"
