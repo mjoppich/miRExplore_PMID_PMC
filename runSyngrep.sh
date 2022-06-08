@@ -1,6 +1,6 @@
 echo "Usage: runSyngrep [output] [infiles] [excludes] [synfiles]"
 
-TMEXEC=$1
+TMEXEC="$1"
 OUTPUT=$2
 INFILE=$3
 EXCL=$4
@@ -24,8 +24,8 @@ SYNGREP_EXCLUDE=""
 fi
 
 #SYNGREP="./progs/syngrep"
-SYNGREP=TMEXEC
-Context_SyngrepCall="$SYNGREP -np 14 -s $SYNFILES"
+SYNGREP=$TMEXEC
+Context_SyngrepCall="$SYNGREP -s $SYNFILES"
 SYNGREP_EXTRAS="-nocells -tl 5 -prunelevel none "
 #-extra '()[]' -tuple /home/proj/biosoft/SFB1123/Athero_Bioinfo.tuple
 
