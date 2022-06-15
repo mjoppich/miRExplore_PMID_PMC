@@ -101,6 +101,11 @@ The, integrated cross-species ontology covering anatomical structures in animals
 
 ## Perform interaction mining
 
+For interaction mining we require specific spacy models:
+
+    wget https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.2.4/en_core_sci_lg-0.2.4.tar.gz
+    wget https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.2.4/en_ner_bionlp13cg_md-0.2.4.tar.gz
+
 We save the following information in a bash script:
 
     MAINDIR="./"

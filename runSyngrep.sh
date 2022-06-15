@@ -1,6 +1,6 @@
-echo "Usage: runSyngrep [output] [infiles] [excludes] [synfiles]"
+echo "Usage: runSyngrep [TMEXEC] [output] [infiles] [excludes] [synfiles]"
 
-TMEXEC=$1
+TMEXEC="$1"
 OUTPUT=$2
 INFILE=$3
 EXCL=$4
@@ -13,6 +13,7 @@ echo $EXCL
 shift
 shift
 shift
+shift
 
 SYNFILES=$@
 echo $SYNFILES
@@ -20,12 +21,12 @@ echo $SYNFILES
 SYNGREP_EXCLUDE="-e excludes/all_excludes.syn"
 
 if [ ! -z "$EXCL" ]; then
+echo "REMOVING EXCLUDES"
 SYNGREP_EXCLUDE=""
 fi
 
-#SYNGREP="./progs/syngrep"
-SYNGREP=TMEXEC
-Context_SyngrepCall="$SYNGREP -np 14 -s $SYNFILES"
+SYNGREP=$TMEXEC
+Context_SyngrepCall="$SYNGREP -s $SYNFILES"
 SYNGREP_EXTRAS="-nocells -tl 5 -prunelevel none "
 #-extra '()[]' -tuple /home/proj/biosoft/SFB1123/Athero_Bioinfo.tuple
 
