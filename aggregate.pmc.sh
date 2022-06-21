@@ -15,7 +15,7 @@ mkdir -p $OUTPREFIX
 OPTIONS=""
 #OPTIONS="--mine-path /mnt/raidinput2/tmp/joppich/pubmed_pmc/pmc/miRExplore_PMID_PMC/ --threads 8"
 #OPTIONS="--mine-path /mnt/raidinput2/tmp/joppich/pubmed_pmc/pmc/miRExplore_PMID_PMC/ --threads 4"
-#OPTIONS="--threads 30 --nlp $DATADIR/en_core_sci_lg-0.2.4/en_core_sci_lg/en_core_sci_lg-0.2.4/ --nlpent $DATADIR/en_ner_bionlp13cg_md-0.2.4/en_ner_bionlp13cg_md/en_ner_bionlp13cg_md-0.2.4/"
+OPTIONS="--threads 64 --nlp $DATADIR/en_core_sci_lg-0.2.4/en_core_sci_lg/en_core_sci_lg-0.2.4/ --nlpent $DATADIR/en_ner_bionlp13cg_md-0.2.4/en_ner_bionlp13cg_md/en_ner_bionlp13cg_md-0.2.4/"
 
 cd $MAINDIR
 
