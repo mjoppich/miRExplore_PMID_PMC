@@ -21,17 +21,18 @@ cd $MAINDIR
 
 CMD="python3 -O $ENTENTSCRIPT --sentid-no-text --sent-no-byte --datadir $DATADIR --sentdir $SENTDIR --resultdir $RESULTSDIR -f1 mirna -f2 mgi  -ft1 mirna -ft2 gene --same-sentence $OPTIONS"
 echo $CMD
-stdbuf -oL $CMD > $OUTPREFIX"mirna_gene.mmu.pmid" 2> $OUTPREFIX"mirna_gene.mmu.err" || exit -1
+#stdbuf -oL $CMD > $OUTPREFIX"mirna_gene.mmu.pmid" 2> $OUTPREFIX"mirna_gene.mmu.err" || exit -1
 
 CMD="python3 -O $ENTENTSCRIPT --sentid-no-text --sent-no-byte --datadir $DATADIR --sentdir $SENTDIR --resultdir $RESULTSDIR -f1 mirna -f2 hgnc -ft1 mirna -ft2 gene --same-sentence $OPTIONS"
 echo $CMD
-stdbuf -oL $CMD > $OUTPREFIX"mirna_gene.hsa.pmid" 2> $OUTPREFIX"mirna_gene.hsa.err" || exit -1
+#stdbuf -oL $CMD > $OUTPREFIX"mirna_gene.hsa.pmid" 2> $OUTPREFIX"mirna_gene.hsa.err" || exit -1
 
-cat $OUTPREFIX/mirna_gene.mmu.pmid $OUTPREFIX/mirna_gene.hsa.pmid | cut -f 7 | sort | uniq > $OUTPREFIX/relevant_pmids.list
+cat $OUTPREFIX/mirna_gene.mgi.pmid $OUTPREFIX/mirna_gene.hgnc.pmid | cut -f 7 | sort | uniq > $OUTPREFIX/relevant_pmids.list
 echo "Found Documents"
 wc -l $OUTPREFIX/relevant_pmids.list
 
 CONTEXTSCRIPT=$MIREXPLORE_PATH/relation_extraction/createContextInfo.py
+OPTIONS="--threads 64"
 
 CMD="python3 -O $CONTEXTSCRIPT --sentid-no-text --accept-pmids $OUTPREFIX/relevant_pmids.list --datadir $MAINDIR --sentdir $SENTDIR --resultdir $RESULTSDIR/disease/ --obo $MAINDIR/obodir/doid.obo $OPTIONS"
 echo $CMD
