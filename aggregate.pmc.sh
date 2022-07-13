@@ -27,7 +27,10 @@ CMD="python3 -O $ENTENTSCRIPT --sentid-no-text --sent-no-byte --datadir $DATADIR
 echo $CMD
 #stdbuf -oL $CMD > $OUTPREFIX"mirna_gene.hsa.pmid" 2> $OUTPREFIX"mirna_gene.hsa.err" || exit -1
 
-cat $OUTPREFIX/mirna_gene.mgi.pmid $OUTPREFIX/mirna_gene.hgnc.pmid | cut -f 7 | sort | uniq > $OUTPREFIX/relevant_pmids.list
+cat $OUTPREFIX/*/mirna_gene.mgi.pmid > $OUTPREFIX/mirna_gene.mmu.pmid
+cat $OUTPREFIX/*/mirna_gene.hgnc.pmid > $OUTPREFIX/mirna_gene.hsa.pmid
+
+cat $OUTPREFIX/mirna_gene.mmu.pmid $OUTPREFIX/mirna_gene.hsa.pmid | cut -f 7 | sort | uniq > $OUTPREFIX/relevant_pmids.list
 echo "Found Documents"
 wc -l $OUTPREFIX/relevant_pmids.list
 
